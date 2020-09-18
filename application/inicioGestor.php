@@ -63,9 +63,9 @@
                 </tr>
 
             </table>
-            <label>Arquivo</label>
-            <input type ="file" name="arquivo" id="upload"><br>
-            <button type="" class="importarPPs">Importar</button>
+
+             <!--<input type="file" class="importarPPs"/>-->
+            <button class="importarPPs"> <input type="file" /> Importar</button>
         </div>
     </section>
 
