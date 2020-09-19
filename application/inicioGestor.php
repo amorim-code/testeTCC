@@ -63,11 +63,17 @@
                 </tr>
 
             </table>
+<<<<<<< HEAD
             <form action ="processa.php" method ="post" enctype="multipart/form-data">
                 <label>Arquivo</label>
                 <input type ="file" name="arquivo" id="upload"><br>
                 <button type="" class="importarPPs">Importar</button>
             </form>
+=======
+
+             <!--<input type="file" class="importarPPs"/>-->
+            <button class="importarPPs"> <input type="file" /> Importar</button>
+>>>>>>> 91f76cc185eda642faf7a4478d6c093647f5578e
         </div>
     </section>
 
