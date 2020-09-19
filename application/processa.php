@@ -7,8 +7,58 @@
     <body>
         <h1> Importando Planilhas para o banco </h1>
         <?php
-            echo "Pagina de processamento";
-            //$dados = $_FILES['arquivo'];
+            session_start();
+            echo "Pagina de processamento <br>";
+            
+            require_once"../Libraries/PHPExcel.php";
+            require('conexao.php');
+            
+            if(!empty($_FILES['arquivo']['tmp_name'])){
+                $dados = $_FILES['arquivo']['tmp_name'];
+                
+                $leitura = PHPExcel_IOFactory::createReaderForFile($dados);
+                $leitura->setReadDataOnly(true);
+                $objPHPExcel = $leitura->load($dados);
+                
+                //pegando o total de colunas
+                $colunas = $objPHPExcel->setActiveSheetIndex(0)->getHighestColumn();
+                $totalColunas = PHPExcel_Cell::columnIndexFromString($colunas);
+                
+                //pegando o total de linhas
+                $totalLinhas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
+                
+                /*$obterDados = $objeto->getSheet(0);
+                $ultimaLinha = $obterDados->getHighestRow();
+                $ultimaColuna = $obterDados->getHighestColumn();*/
+      
+                $primeiraLinha = true;
+                echo "<table border='1'>";
+                for($linha = 1; $linha<=$totalLinhas; $linha++)
+                {
+                        echo "<tr>";
+                        for($coluna = 0; $coluna <= $totalColunas; $coluna++){
+                        if($linha == 1){
+                            $dado = "<th>".utf8_decode($objPHPExcel->getActiveSheet()->getCellByColumnAndRow($coluna, $linha)->getValue())."</td>";
+                        }
+                        else{
+                            $dado = "<td>".utf8_decode($objPHPExcel->getActiveSheet()->getCellByColumnAndRow($coluna, $linha)->getValue())."</td>";
+                            //echo "<tr><td>";
+                            echo $totalColunas;
+                            //echo "</td></tr>";
+                        }
+                        echo "</tr>";
+                        $primeiraLinha = false;
+                    }
+                }
+                    echo "</tr></table>";
+            }
+            else{
+                $_SESSION["erro"] = 1;  
+            }
+            
+            /*echo "<pre>";
+            var_dump($return);
+            echo "</pre>";*/
             //var_dump($dados);
         
             /*include_once "conexao.php"; //chamei o arquivo de conexão com o banco

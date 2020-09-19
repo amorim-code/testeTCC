@@ -30,9 +30,9 @@ class Gestor extends Usuario{
         
     }
     
-    private function cadastrarPP()
+    private function cadastrarPP($valores)
     {
-        
+        $instrucao = "INSERT INTO alunos (usuario_rmAluno,rmAluno, nomeAluno) values ($valores)";
     }
     
     private function finalizarPP()
