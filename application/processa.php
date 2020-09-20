@@ -10,48 +10,41 @@
             session_start();
             echo "Pagina de processamento <br>";
             
-            require_once"../Libraries/PHPExcel.php";
+            //Chamando a classe PHPExcel e a conexão
+            require("../Libraries/PHPExcel.php");
             require('conexao.php');
             
+            //Verificando se o arquivo não veio vazio
             if(!empty($_FILES['arquivo']['tmp_name'])){
-                $dados = $_FILES['arquivo']['tmp_name'];
                 
-                $leitura = PHPExcel_IOFactory::createReaderForFile($dados);
-                $leitura->setReadDataOnly(true);
-                $objPHPExcel = $leitura->load($dados);
+                $planilha = $_FILES['arquivo']['tmp_name'];
                 
-                //pegando o total de colunas
+                //Carrega automaticamente qualquer tipo de arquivo que for enviado
+                $leitura = PHPExcel_IOFactory::createReaderForFile($planilha);
+                //$aba = ('Doc30 - ANO 2019');
+                //$leitura->setLoadSheetsOnly($aba);
+                $objPHPExcel = $leitura->load($planilha);
+                
                 $colunas = $objPHPExcel->setActiveSheetIndex(0)->getHighestColumn();
-                $totalColunas = PHPExcel_Cell::columnIndexFromString($colunas);
+                $totaColunas = PHPExcel_Cell::columnIndexFromString($colunas);
                 
-                //pegando o total de linhas
                 $totalLinhas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
                 
-                /*$obterDados = $objeto->getSheet(0);
-                $ultimaLinha = $obterDados->getHighestRow();
-                $ultimaColuna = $obterDados->getHighestColumn();*/
-      
-                $primeiraLinha = true;
-                echo "<table border='1'>";
-                for($linha = 1; $linha<=$totalLinhas; $linha++)
-                {
-                        echo "<tr>";
-                        for($coluna = 0; $coluna <= $totalColunas; $coluna++){
-                        if($linha == 1){
-                            $dado = "<th>".utf8_decode($objPHPExcel->getActiveSheet()->getCellByColumnAndRow($coluna, $linha)->getValue())."</td>";
+                echo "<table border = '1'>";
+                for ($linha=1; $linha<=$totalLinhas; $linha++){
+                    echo "<tr>";
+                    for ($coluna=0; $coluna<=$totaColunas-1; $coluna++){
+                        if($linha==1){
+                            echo "<th>". utf8_decode($objPHPExcel->getActiveSheet()->getCellByColumnAndRow($coluna,$linha)->getValue());
                         }
                         else{
-                            $dado = "<td>".utf8_decode($objPHPExcel->getActiveSheet()->getCellByColumnAndRow($coluna, $linha)->getValue())."</td>";
-                            //echo "<tr><td>";
-                            echo $totalColunas;
-                            //echo "</td></tr>";
+                            echo "<td>".utf8_decode($objPHPExcel->getActiveSheet()->getCellByColumnAndRow($coluna,$linha)->getValue());
                         }
-                        echo "</tr>";
-                        $primeiraLinha = false;
                     }
+                    echo "</tr>";
                 }
-                    echo "</tr></table>";
-            }
+                echo "</table>";
+            }        
             else{
                 $_SESSION["erro"] = 1;  
             }

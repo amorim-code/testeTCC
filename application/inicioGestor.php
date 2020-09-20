@@ -66,7 +66,7 @@
             <form action ="processa.php" method ="post" enctype="multipart/form-data">
                 <label>Arquivo</label>
                 <input type ="file" name="arquivo" id="upload"><br>
-                <button type="" class="importarPPs">Importar</button>
+                <button class="importarPPs">Importar</button>
             </form>
         </div>
     </section>
