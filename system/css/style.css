@@ -203,6 +203,7 @@
     cursor: pointer;
     font-size:16px;
     outline:none;
+    display:inline;
   }
   button{
       font-family:"Lato", sans-serif;
@@ -223,10 +224,10 @@
       font-size:20px; 
       font-weight: 900;
   } 
-  
-  input[type='file'] {
-    display: none
+  input[type="file"]{
+      display:none;
   }
+
   .materiais{
       position:relative;
       background-color:#a9a9a9;
@@ -447,7 +448,11 @@ select{
     right:0;
     bottom:-60px;
     font-family: "Lato", sans-serif;
-    width:15%;
+    cursor:pointer;
+    text-align:center;
+}
+.lblImportar{
+    cursor:pointer;
 }
 .tabela-atividades table{
     background-color:#c4c4c4;
@@ -676,6 +681,30 @@ select{
 }
 .formAtiv .btnEnviar{
     width:100%;
+}
+.btnImportar{
+    background-color:#1ec2b4;
+    border:0;
+    border-radius:10px;
+    font-weight: 900;
+    padding:10px;
+    -webkit-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    font-size:16px;
+    outline:none;
+    font-family: 'Lato', sans-serif;
+}
+.modal-alert{
+    height:30%;
+    background-color:#a9a9a9;
+    border-radius: 25px;
+    width:400px;
+    padding:15px;
+    -webkit-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.5);
 }
 @media (min-width:1290px){
     .formAtiv input[type='datetime-local']{

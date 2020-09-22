@@ -36,9 +36,15 @@
                         for ($coluna=0; $coluna<=$totaColunas; $coluna++){
                             $dados = $sheet->getCellByColumnAndRow($coluna, $row)->getValue();
                             if (!empty($dados)){
-                                echo "<td>";
-                                echo $dados;
-                                echo "</td>";
+
+                                $realRow = $row--;
+                                $array[$realRow][$coluna] = $dados;
+
+                                var_dump($array);
+
+                                //echo "<td>";
+                                //echo $dados;
+                                //echo "</td>";
                                 
                                 //Instrução pro banco em poo
                             }
@@ -51,3 +57,4 @@
             }    
                 
         ?>
+

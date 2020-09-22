@@ -2,10 +2,11 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="frontend/css/navbar.css" />
-    <!--<link rel="stylesheet" type="text/css" href="frontend/css/style.css"/>-->
+    <link rel="stylesheet" type="text/css" href="../system/css/navbar.css" />
+    <link rel="stylesheet" type="text/css" href="../system/css/style.css">
+
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet" />
@@ -16,7 +17,7 @@
 <body>
     <nav>
         <div class="logo">
-            <img src="img/helpp.png" />
+            <img src="../system/img/helpp.png" />
         </div>
         <ul class="nav-links">
             <li><a href="#" class="inicio"><i class="fas fa-home"></i><span>Início</span></a></li>
@@ -61,17 +62,29 @@
                     <td class="celulaConcluiu"></td>
                     <td class="celulaMencao"></td>
                 </tr>
-
             </table>
-            <form action ="processa.php" method ="post" enctype="multipart/form-data">
-                <label>Arquivo</label>
-                <input type ="file" name="arquivo" id="upload"><br>
-                <button class="importarPPs">Importar</button>
-            </form>
+
+            <form method="POST" action="processa.php" enctype="multipart/form-data">
+
+                <div class="importarPPs">
+                    <label for="uploadPPs" id="lblImportarPPs"><span class="lblImportar">Importar</span></label>
+                    <input type="file" name="uploadPPs" id="uploadPPs">
+                </div>
+
+                <div class="modal-container" id="modal-alert-import">
+                    <div class="modal-alert">
+                        <h3 class="tituloModal">Atenção!</h3><br />
+                        <span id="spnAviso"></span><br/>
+                        <input type="submit" class="btnImportar" value="Sim">
+                        <div class="botao">Não</div>
+                    </div>                    
+                </form>
+            </div>
+
         </div>
     </section>
 
-    <script src="js/app.js"></script>
+    <script src="../system/js/app.js"></script>
 </body>
 
 </html>

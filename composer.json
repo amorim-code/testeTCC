@@ -1,0 +1,10 @@
+{
+    "name": "lucas/teste-tcc",
+    "authors": [
+        {
+            "name": "CrownTech",
+            "email": "contato.crowntech@gmail.com"
+        }
+    ],
+    "require": {}
+}
