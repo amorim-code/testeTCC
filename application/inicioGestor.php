@@ -64,7 +64,7 @@
                 </tr>
             </table>
 
-            <form method="POST" action="processa.php" enctype="multipart/form-data">
+            <form method="POST" action="processamento.php" enctype="multipart/form-data">
 
                 <div class="importarPPs">
                     <label for="uploadPPs" id="lblImportarPPs"><span class="lblImportar">Importar</span></label>

@@ -1,10 +1,16 @@
 {
     "name": "lucas/teste-tcc",
-    "authors": [
-        {
-            "name": "CrownTech",
-            "email": "contato.crowntech@gmail.com"
+    "description": "TesteHelpp",
+    "authors": [{
+        "name": "CrownTech",
+        "email": "contato.crowntech@gmail.com"
+    }],
+    "require": {
+        "phpoffice/phpexcel": "^1.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "application\\": "application/"
         }
-    ],
-    "require": {}
+    }
 }

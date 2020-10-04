@@ -28,28 +28,81 @@
                     //Implementado de outra aula
                     $colunas = $objPHPExcel->setActiveSheetIndex(0)->getHighestColumn();
                     $totaColunas = PHPExcel_Cell::columnIndexFromString($colunas);
-                    
+
+                    $row=1;
+                    $coluna=0;
+                    $i=0;
+
+                    $dados = $sheet->getCellByColumnAndRow($coluna, $row)->getValue();
+
+
                     echo "<table border = '1'>";
-                    for ($row=1; $row<=$totalLinhas; $row++){
+                    /*while ($i < $totalLinhas) { 
+
                         echo "<tr>";
-                        //implementado
-                        for ($coluna=0; $coluna<=$totaColunas; $coluna++){
-                            $dados = $sheet->getCellByColumnAndRow($coluna, $row)->getValue();
-                            if (!empty($dados)){
+                        echo "<td>";
 
-                                $realRow = $row--;
-                                $array[$realRow][$coluna] = $dados;
-
-                                var_dump($array);
-
-                                //echo "<td>";
-                                //echo $dados;
-                                //echo "</td>";
-                                
-                                //Instrução pro banco em poo
+                        if ($dados == NULL) {                        
+                            echo "NÃO HÁ DADOS";
+                        }else{
+                            for ($row=1; $row<=$totalLinhas; $row++){
+                                for ($coluna=0; $coluna<=$totaColunas; $coluna++){
+                                    
+                                    echo $dados;
+                                    
+                                }
                             }
                         }
+                        
+                        echo "</td>";                
+                        $i++;
+                        
+                    }*/
+
+                    
+                    $l=0;
+                                        
+                    $tabela = array (
+                        array()
+                    );
+                    
+                    for ($row=9; $row<=$totalLinhas; $row++){
+                        echo "<tr>";
+                        //implementado
+
+                        $c=0;
+                                                
+                        for ($coluna=0; $coluna<=$totaColunas; $coluna++){
+                            $dados = $sheet->getCellByColumnAndRow($coluna, $row)->getValue();
+                            
+                            if ($dados != null){
+                                echo "<td>";
+                                echo $dados;
+                                echo "</td>";
+                                
+                                
+                                $tabela[$l][$c] = $dados;
+
+                                var_dump($tabela);
+                                
+                                //Instrução pro banco em poo
+                                $c++;
+                            }else{
+
+                                $coluna++;
+                                //echo "<td>";
+                                //echo "F";
+                                //echo "</td>";
+                            }                            
+                                                      
+                                                        
+                        }
+
                         echo "</tr>";
+
+                        $l++;
+                        
+                       
                     }
                     echo "</table>";
                 }
