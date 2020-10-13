@@ -1,9 +1,13 @@
+<?php
+   use application\config\config;
+?>
+
 <div class="wrapper">
       <div class="half-one">
         <img src="img/helpp.png" class="logo"></img>
-      </div>
+      </div>      
       <div class="half-two">
-        <form class="frmLogin" method="POST" action="login.php">
+        <form class="frmLogin" method="POST" action="/testeTcc/cep/" >
           <div class="form">
             <h1 class="tituloForm">LOGIN</h1><br/>
             <label for="txtRM" id="lblRM" class="lblRM"></label>

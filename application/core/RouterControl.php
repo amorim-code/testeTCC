@@ -4,6 +4,24 @@ namespace application\core;
 
 class RouterControl
 {
+    private $url;
+    private $controller;
+    private $method;
+
+    public function __construct()
+    {
+
+    }
+
+    public function start($request)
+    {
+       $this->url = explode('/', $request['url']);
+
+       $this->controller = ucfirst($this->url[0]);
+       array_shift();
+    }
+
+    /*
     private $uri;
     private $method;
     private $getArr = [];
@@ -21,7 +39,7 @@ class RouterControl
         $uri = $_SERVER['REQUEST_URI'];
 
         $ex = explode('/', $uri);
-
+    
         $uri = $this->normalizeURI($ex);
 
         for ($i = 0; $i < UNSET_URI_COUNT; $i++) {
@@ -101,10 +119,10 @@ class RouterControl
             new $cont,
             $ex[1]
         ], []);
-    }*/
+    }
 
     private function normalizeURI($arr)
     {
         return array_values(array_filter($arr));
-    }
+    }*/
 }

@@ -8,7 +8,6 @@
 
 namespace application\models;
 use application\config\dbConfig;
-use application\controllers\Login;
 
 class Usuario extends dbConfig
 {
@@ -27,44 +26,54 @@ class Usuario extends dbConfig
 
         if($row == 1)
         {
-            //Senha padrão = "ETECHAS"
-            if($this->senhaUsuario == "ETECHAS")
-            {
-                return 'atualizarSenha';
-            }
-            else
-            {
-                    
-            }
+            return true;
         }
         else
         {
-            return 'index';
+            return false;
         }       
     }
 
-    public function verifyPerm($perfil = "")
+    public function veryfyPass()
     {
-        $login = new Login;
-        switch ($perfil) {
+        $query = "SELECT rmUsuario, senhaUsuario, perfilUsuario FROM usuario WHERE rmUsuario = '{$this->idUsuario}' AND senhaUsuario = '{$this->senhaUsuario}' AND perfilUsuario = '{$this->perfilUsuario}' AND atualizaSenha = '1'";
+        $result = mysqli_query($this->conect(), $query);
+        $row = mysqli_num_rows($result);
+
+        if($row == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        } 
+    }
+
+    public function verifyPerm()
+    {
+        switch ($this->perfilUsuario) {
             case 'gestor':                
-                return $login->indexManager();
+                return 'indexManager';
             break;
             case 'professor':
-                return $login->indexTeach();                
+                return 'indexTeach';                
             break;
             case 'aluno':
-                return $login->indexStudy();
+                return 'indexStudy';
             break;
         }
     }
 
     public function realScape($id, $senha)
     {
-        $id = mysqli_real_escape_string($this->conect(), $id);
-        $senha = mysqli_real_escape_string($this->conect(), $senha);
+        $realId = mysqli_real_escape_string($this->conect(), $id);
+        $realSenha = mysqli_real_escape_string($this->conect(), $senha);
 
-        $trat[] = [$id, $senha];
+        $trat = array(
+           'setId' => $realId,
+            'setSenha' => $realSenha
+        );
 
         return  $trat;       
     }

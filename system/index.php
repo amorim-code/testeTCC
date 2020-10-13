@@ -3,4 +3,5 @@
     require_once ('../application/config/config.php');
     
 
-    (new \application\core\RouterControl());
+    $routerControl = new \application\core\RouterControl;
+    $routerControl->start($_GET);
