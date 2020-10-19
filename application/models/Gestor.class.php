@@ -5,7 +5,7 @@
  * Descricao
  * @copyright (c) year, Geovana M. Melo 
  */
-class Gestor extends Usuario{
+class Gestor{
 //put your code here
     protected $rmGestor;
     protected $cargoGestor;
@@ -30,9 +30,9 @@ class Gestor extends Usuario{
         
     }
     
-    private function cadastrarPP($valores)
+    public function cadastrarPP($valores)
     {
-        $instrucao = "INSERT INTO alunos (nomeAluno) values ($valores)";
+        return "INSERT INTO aluno (rmAluno,rmUsuario) values ($valores,$valores)";
     }
     
     private function finalizarPP()

@@ -5,8 +5,19 @@
             //Chamando a classe PHPExcel e a conexão
             require("../Libraries/PHPExcel.php");
             require("../Libraries/PHPExcel/IOFactory.php");
-            require('conexao.php');
             //require("../application/models/Gestor.class.php");
+            
+            //Chamando os arquivos responsáveis pela conexão ao banco
+            require ("../application/config/config.php");
+            require ("../application/config/Conn.class.php");
+            
+            //Classe de cadastro
+            require ("../application/models/Create.class.php");
+            
+            //Conectando com o banco
+            $conn = new Conn;
+            $conn->getConn();          
+            //var_dump($conn);
             
             //Verificando se o arquivo não veio vazio
             if(!empty($_FILES['uploadPPs']['tmp_name'])){
@@ -33,81 +44,62 @@
                     $coluna=0;
                     $i=0;
 
-                    $dados = $sheet->getCellByColumnAndRow($coluna, $row)->getValue();
-
-
-                    echo "<table border = '1'>";
-                    /*while ($i < $totalLinhas) { 
-
-                        echo "<tr>";
-                        echo "<td>";
-
-                        if ($dados == NULL) {                        
-                            echo "NÃO HÁ DADOS";
-                        }else{
-                            for ($row=1; $row<=$totalLinhas; $row++){
-                                for ($coluna=0; $coluna<=$totaColunas; $coluna++){
-                                    
-                                    echo $dados;
-                                    
-                                }
-                            }
-                        }
-                        
-                        echo "</td>";                
-                        $i++;
-                        
-                    }*/
-
-                    
                     $l=0;
                                         
                     $tabela = array (
                         array()
                     );
                     
-                    for ($row=9; $row<=$totalLinhas; $row++){
+                    //ALTEREI O FOR PRA IR POUCO DADO PRO BANCO AGORA NO COMEÇO - Xofana
+                    for ($row=9; $row<=10; $row++){
                         echo "<tr>";
                         //implementado
-
                         $c=0;
                                                 
-                        for ($coluna=0; $coluna<=$totaColunas; $coluna++){
+                        for ($coluna=0; $coluna<=4; $coluna++){
                             $dados = $sheet->getCellByColumnAndRow($coluna, $row)->getValue();
-                            
                             if ($dados != null){
-                                echo "<td>";
+                                /*echo "<td>";
                                 echo $dados;
-                                echo "</td>";
-                                
-                                
-                                $tabela[$l][$c] = $dados;
-
+                                echo "</td>";*/
+                                switch($coluna){
+                                    case 2: $rmAluno = $dados;break;
+                                    case 3: $nomeAluno = $dados;break;
+                                    default: $periodo = $dados;
+                                }
+                                /*$tabela[$l][$c] = $dados;
+                                echo "<pre>";
                                 var_dump($tabela);
-                                
-                                //Instrução pro banco em poo
+                                echo "</pre>";*/
                                 $c++;
                             }else{
-
                                 $coluna++;
-                                //echo "<td>";
-                                //echo "F";
-                                //echo "</td>";
-                            }                            
-                                                      
-                                                        
+                            }                                                                           
                         }
-
                         echo "</tr>";
-
-                        $l++;
+                        $l++; 
                         
-                       
+                        echo "RM do aluno: " . $rmAluno . "<hr>";
+                        echo "Nome do aluno: " . $nomeAluno . "<br><hr>";
+                        echo "Período: " . $periodo . "<br><hr>";
+                        
+                        //Cadastrando os dados
+                        $Info = ['rmAluno'=> $rmAluno, 'rmUsuario' => $rmAluno, 'nome' => $nomeAluno];
+                        
+                        $Cadastrar = new Create;
+                        $Cadastrar->ExeCreate('aluno', $Info);
+                        
+                        if($Cadastrar->getResultado()){
+                            echo "Cadastro efetuado com sucesso! <\br><hr>";
+                            $_SESSION["resultado"] = true;
+                        }
+                        
+                        echo "<pre>";
+                        var_dump($Cadastrar);
+                        echo "</pre>";
                     }
                     echo "</table>";
-                }
-                    
-            }    
-                
-        ?>
+                }      
+            }        
+?>
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace application\config;
+//namespace application\config;
 
-class dbConfig
+/*class dbConfig
 {
 	private $servidor = "localhost";
 	private $usuario = "root";
@@ -21,6 +21,5 @@ class dbConfig
 
 		return $conn;
 	}
-}
-
+}*/
 ?>  
