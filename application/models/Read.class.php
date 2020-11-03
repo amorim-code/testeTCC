@@ -82,7 +82,7 @@ class Read extends Conn{
             
         } catch (PDOException $e) {
             $this->Result = null;
-            CRErro("<b>Erro ao ler:</b> {$e->getMessage()}", $e->getCode());
+            WSErro("<b>Erro ao ler:</b> {$e->getMessage()}", $e->getCode());
         }
     }
     
