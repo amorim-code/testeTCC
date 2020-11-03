@@ -11,21 +11,27 @@ class Curso {
     public $eixoCurso;
     public $nomeCurso;
     
-    private function cadastrar()
-    {
-        
+    function getCodCurso() {
+        return $this->codCurso;
     }
-    
-    private function consultar(){
-        
+
+    function getEixoCurso() {
+        return $this->eixoCurso;
     }
-    
-    private function alterar()
-    {
-        
+
+    function getNomeCurso() {
+        return $this->nomeCurso;
     }
-    
-    private function excluir(){
-        
+
+    function setCodCurso($codCurso){
+        $this->codCurso = $codCurso;
+    }
+
+    function setEixoCurso($eixoCurso){
+        $this->eixoCurso = $eixoCurso;
+    }
+
+    function setNomeCurso($nomeCurso){
+        $this->nomeCurso = $nomeCurso;
     }
 }

@@ -7,25 +7,31 @@
  */
 class Disciplina {
 //put your code here
-    public $codDisciplina;
-    public $eixoDisciplina;
-    public $nomeDisciplina;
+    private $codDisciplina;
+    private $eixoDisciplina;
+    private $nomeDisciplina;
     
-    private function cadastrar()
-    {
-        
+    function getCodDisciplina() {
+        return $this->codDisciplina;
     }
-    
-    private function consultar(){
-        
+
+    function getEixoDisciplina() {
+        return $this->eixoDisciplina;
     }
-    
-    private function alterar()
-    {
-        
+
+    function getNomeDisciplina() {
+        return $this->nomeDisciplina;
     }
-    
-    private function excluir(){
-        
+
+    function setCodDisciplina($codDisciplina){
+        $this->codDisciplina = $codDisciplina;
+    }
+
+    function setEixoDisciplina($eixoDisciplina){
+        $this->eixoDisciplina = $eixoDisciplina;
+    }
+
+    function setNomeDisciplina($nomeDisciplina){
+        $this->nomeDisciplina = $nomeDisciplina;
     }
 }

@@ -10,7 +10,7 @@ define('DEBUG_URI', false);
 define('HOST', 'localhost'); //lê a constante quando executar o código. 
 define('USER', 'root');
 define('PASS', '');
-define('DBSA', 'helpp'); //nome do banco
+define('DBSA', 'teste_tcc'); //nome do banco
 
 //WSErro :: Exibe erros lançados :: Front
 function WSErro($ErrMsg, $ErrNo, $ErrDie = null) {

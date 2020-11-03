@@ -18,16 +18,16 @@ date_default_timezone_set('America/Sao_Paulo');
 </head>
 
 <body>
-    <nav>
+    <nav id="navbar-helpp">
         <div class="logo">
             <img src="img/helpp.png" />
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span>Início</span></a></li>
-            <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span>Atividades</span></a></li>
-            <li><a href="#" class="config"><i class="fas fa-cog"></i><span>Configurações</span></a></li>
-            <li><a href="#" class="sair"><i class="fas fa-power-off"><span>Sair</span></i></a></li>
-            <li><a href="#" class="dark-mode"><i class="fas fa-adjust"></i></a></li>
+            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
+            <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
+            <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
+            <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
+            
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -35,7 +35,7 @@ date_default_timezone_set('America/Sao_Paulo');
             <div class="linha3"></div>
         </div>
     </nav>
-    <div class="wrapper">
+    <div class="wrapper" id="tela">
         <div class="formAtividade">
             <h1 class="tituloForm3">Adicionar atividade</h1>
             <form class="formAtiv">

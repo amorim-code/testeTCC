@@ -5,29 +5,50 @@
  * Descricao
  * @copyright (c) year, Geovana M. Melo 
  */
-class Turma {
-//put your code here
+class Turma{
     private $codTurma;
+    private $codCurso;
     private $nomeTurma;
     private $semestreTurma;
     private $anoTurma;
     
-    private function cadastrar()
-    {
-        
+    function getCodTurma() {
+        return $this->codTurma;
     }
     
-    private function consultar(){
-        
+    function getCodCurso(){
+        return $this->codCurso;
+    }
+
+    function getNomeTurma() {
+        return $this->nomeTurma;
+    }
+
+    function getSemestreTurma() {
+        return $this->semestreTurma;
+    }
+
+    function getAnoTurma() {
+        return $this->anoTurma;
     }
     
-    private function alterar()
-    {
-        
+    function setCodTurma($codTurma){
+        $this->codTurma = $codTurma;
     }
     
-    private function excluir(){
-        
+    function setCodCurso($codCurso){
+        $this->codCurso = $codCurso;
     }
     
+    function setNomeTurma($nomeTurma){
+        $this->nomeTurma = $nomeTurma;
+    }
+
+    function setSemestreTurma($semestreTurma){
+        $this->semestreTurma = $semestreTurma;
+    }
+
+    function setAnoTurma($anoTurma){
+        $this->anoTurma = $anoTurma;
+    }
 }

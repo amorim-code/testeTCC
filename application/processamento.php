@@ -1,6 +1,6 @@
 <?php
             session_start();
-            echo "Pagina de processamento <br>";
+            echo "<h1>Pagina de processamento </h1><br>";
             
             //Chamando a classe PHPExcel e a conexão
             require("../Libraries/PHPExcel.php");
@@ -13,6 +13,9 @@
             
             //Classe de cadastro
             require ("../application/models/Create.class.php");
+            require ("../application/models/Usuario.php");
+            require ("../application/models/UsuarioDAO.class.php");
+            require ("../application/models/Aluno.class.php");
             
             //Conectando com o banco
             $conn = new Conn;
@@ -36,7 +39,7 @@
                 foreach($worksheet as $sheet){
                     $totalLinhas = $sheet->getHighestRow();
                     
-                    //Implementado de outra aula
+                    //pegando o total de colunas
                     $colunas = $objPHPExcel->setActiveSheetIndex(0)->getHighestColumn();
                     $totaColunas = PHPExcel_Cell::columnIndexFromString($colunas);
 
@@ -49,20 +52,15 @@
                     $tabela = array (
                         array()
                     );
-                    
-                    //echo "<table border='1'>";
+                   
                     //ALTEREI O FOR PRA IR POUCO DADO PRO BANCO AGORA NO COMEÇO - Xofana
                     for ($row=9; $row<=10; $row++){
-                        //echo "<tr>";
                         //implementado
                         $c=0;
                                                 
                         for ($coluna=0; $coluna<=$totaColunas; $coluna++){
                             $dados = $sheet->getCellByColumnAndRow($coluna, $row)->getValue();
                             if ($dados != null){
-                                //echo "<td>";
-                                //echo $dados;
-                                //echo "</td>";
                                 switch($coluna){
                                     case 2: $rmAluno = $dados;break;
                                     case 3: $nomeAluno = $dados;break;
@@ -71,22 +69,11 @@
                                     case 7: $semestreAno = $dados;break;
                                     case 8: $disciplina = $dados;break;
                                     case 9: $professor = $dados;break;
-                                    //case 9: $conclusao = $dados;break;
-                                    //case 10: $mencao = $dados;break;
                                     default: $nulo = $dados;
                                 }
-                                /*$tabela[$l][$c] = $dados;
-                                echo "<pre>";
-                                var_dump($tabela);
-                                echo "</pre>";*/
                                 $c++;
-                            }else{
-                                //Com isso a coluna série estava sendo pulada, pois a coluna período tá mesclada e ele considera 1 vazia
-                                //$coluna++;
-                            }                                                                           
+                            }                                                                       
                         }
-                        //echo "</tr>";
-                        //echo "</table>";
                         $l++; 
                         
                         //tirando a / da string de professores da tabela
@@ -109,34 +96,42 @@
                             echo "Professores responsaveis: " . $prof1 . " e " . $prof2 . "<br><hr>";
                         }
                         
-                        $Cadastrar = new Create;
+                        $Usuario = new application\models\Usuario();
+                        $UsuarioDAO = new UsuarioDAO();
                         
                         //Cadastrando os alunos
-                        $cadUsuario = ['rmUsuario' => $rmAluno, 'nomeUsuario' => $nomeAluno, 'perfilUsuario' => 'Aluno'];
-                        $cadAluno = ['rmAluno'=> $rmAluno, 'rmUsuario' => $rmAluno, 'nome' => $nomeAluno];
+                        $Usuario->setId($rmAluno);
+                        $Usuario->setNome($nomeAluno);
+                        $Usuario->setPerfil('Aluno');
                         
-                        $Cadastrar->ExeCreate('usuario', $cadUsuario);
-                        $Cadastrar->ExeCreate('aluno', $cadAluno);
+                        $UsuarioDAO->cadastrarUsuario($Usuario);
+                        
+                        if($UsuarioDAO->getResult()):
+                           echo "Usuário cadastrado com sucesso!";
+                        else:
+                            echo $UsuarioDAO->getResult();
+                        endif;
                         
                         //Cadastrando os professores
-                        //***para cadastrar precisamos do RM do prof, então aqui eu to fazendo uma gambiarra pra implementar o RM
-                        for ($rmProf = 180120; $rmProf <= 180123; $rmProf++){
+                        //Não está funcionando por enquanto, pois precisamos do real RM dos professores
+                        /*for ($rmProf = 180120; $rmProf <= 180123; $rmProf++){
                             $cadUsuario = ['rmUsuario' => $rmProf, 'nomeUsuario' => $prof1, 'perfilUsuario' => 'Professor'];
-                            $cadProfessor = ['rmProfessor' => $rmProf, 'usuario_rmUsuario' => $rmProf ];
+                            $cadProfessor = ['rmProfessor' => $rmProf, 'rmUsuario' => $rmProf ];
                             if (count($professores) == 2){
                                 $cadUsuario = ['rmUsuario' => $rmProf, 'nomeUsuario' => $prof2, 'perfilUsuario' => 'Professor'];
                                 //$Cadastrar->ExeCreate('usuario', $cadUsuario);
                             }
                             $Cadastrar->ExeCreate('usuario', $cadUsuario);
                             $Cadastrar->ExeCreate('professor', $cadProfessor);
-                        }
+                        }*/
                         
                         //Cadastrando turma, aqui eu vou usar um código ja cadastrado manualmente na tabela curso, já que por enquanto não sabemos como vamos cadastrá-lo
                         //Separando o semestre e o ano da turma de PP
-                        $SemAno = explode("/", $semestreAno);
+                        /*$SemAno = explode("/", $semestreAno);
                         $semestre = $SemAno[0];
                         $ano = $SemAno[1];
                         
+                        //O cod curso está preenchido de forma manual, pois ainda não sabemos como cadastrar os cursos a partir da planilha
                         $cadTurma = ['cod_curso'=> 1, 'nome_turma'=> $seriePP, 'semestre_turma' => $semestre, 'ano_turma' => $ano];
 
                         //Cadastrando disciplina
@@ -154,11 +149,14 @@
                         }
                         
                         echo "<pre>";
-                        var_dump($Cadastrar);
-                        echo "</pre>";
+                        //var_dump($Cadastrar);
+                        echo "</pre>";*/
                     }
                     echo "</table>";
                 }      
-            }        
+            }
+            else{
+                echo "Arquivo não foi carregado!";
+            }
 ?>
 

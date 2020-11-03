@@ -36,7 +36,6 @@ class Read extends Conn{
     }
     
     public function FullRead($Query, $ParseString = null) {
-        
         $this->Select = (string) $Query;
         if(!empty($ParseString)):
             parse_str($ParseString, $this->Places);

@@ -7,9 +7,9 @@
  */
 
 namespace application\models;
-use application\config\dbConfig;
+//use application\config\dbConfig;
 
-class Usuario extends dbConfig
+class Usuario extends \Conn
 {
     protected $idUsuario;
     protected $nomeUsuario;
@@ -85,7 +85,7 @@ class Usuario extends dbConfig
 
     public function getId()
     {
-        return $idUsuario;
+        return $this->idUsuario;
     }
 
     public function setNome($nome)
@@ -95,7 +95,7 @@ class Usuario extends dbConfig
 
     public function getNome()
     {
-        return $nomeUsuario;
+        return $this->nomeUsuario;
     }
 
     public function setEmail($email)
@@ -105,7 +105,7 @@ class Usuario extends dbConfig
 
     public function getEmail()
     {
-        return $emailUsuario;
+        return $this->emailUsuario;
     }
 
     public function setPerfil($perfil)
@@ -115,7 +115,7 @@ class Usuario extends dbConfig
 
     public function getPerfil()
     {
-        return $perfilUsuario;
+        return $this->perfilUsuario;
     }
 
     public function setSenha($senha)
@@ -125,6 +125,6 @@ class Usuario extends dbConfig
 
     public function getSenha()
     {
-        return $senhaUsuario;
+        return $this->senhaUsuario;
     }
 }

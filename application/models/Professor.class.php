@@ -8,8 +8,9 @@
 class Professor extends Usuario{
     protected $rmProfessor;
     
-    private function listarDisciplinas()
+    private function listarDisciplinas(Disciplina $disciplina)
     {
         
     }
+    
 }

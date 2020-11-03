@@ -7,13 +7,14 @@
  */
 class Atividade{
 //put your code here
-    public $codigoAtividade;
-    public $codigoPP;
-    public $tituloAtividade;
-    public $instrucaoAtividade;
-    public $dataConclusaoAtividade;
-    public $formaEntregaAtividade;
-    public $mencaoAtividade;
+    private $codigoAtividade;
+    private $codigoPP;
+    private $tituloAtividade;
+    private $instrucaoAtividade;
+    private $dataConclusaoAtividade;
+    private $prazoAtividade;
+    private $formaEntregaAtividade;
+    private $mencaoAtividade;
     
     public function importarArquivo(){
         
@@ -27,17 +28,71 @@ class Atividade{
         
     }
     
-    public function consultarAtividade(){
-        
+    function getCodigoAtividade() {
+        return $this->codigoAtividade;
     }
-    
-    public function excluirAtividade(){
-        
+
+    function getCodigoPP() {
+        return $this->codigoPP;
     }
-    
-    public function editarAtividade(){
-        
+
+    function getTituloAtividade() {
+        return $this->tituloAtividade;
     }
+
+    function getInstrucaoAtividade() {
+        return $this->instrucaoAtividade;
+    }
+
+    function getDataConclusaoAtividade() {
+        return $this->dataConclusaoAtividade;
+    }
+
+    function getPrazoAtividade() {
+        return $this->prazoAtividade;
+    }
+
+    function getFormaEntregaAtividade() {
+        return $this->formaEntregaAtividade;
+    }
+
+    function getMencaoAtividade() {
+        return $this->mencaoAtividade;
+    }
+
+    function setCodigoAtividade($codigoAtividade){
+        $this->codigoAtividade = $codigoAtividade;
+    }
+
+    function setCodigoPP($codigoPP){
+        $this->codigoPP = $codigoPP;
+    }
+
+    function setTituloAtividade($tituloAtividade){
+        $this->tituloAtividade = $tituloAtividade;
+    }
+
+    function setInstrucaoAtividade($instrucaoAtividade){
+        $this->instrucaoAtividade = $instrucaoAtividade;
+    }
+
+    function setDataConclusaoAtividade($dataConclusaoAtividade){
+        $this->dataConclusaoAtividade = $dataConclusaoAtividade;
+    }
+
+    function setPrazoAtividade($prazoAtividade){
+        $this->prazoAtividade = $prazoAtividade;
+    }
+
+    function setFormaEntregaAtividade($formaEntregaAtividade){
+        $this->formaEntregaAtividade = $formaEntregaAtividade;
+    }
+
+    function setMencaoAtividade($mencaoAtividade){
+        $this->mencaoAtividade = $mencaoAtividade;
+    }
+
+
     
         
 }

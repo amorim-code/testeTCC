@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../system/css/navbar.css" />
-    <link rel="stylesheet" type="text/css" href="../system/css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet" />
@@ -14,16 +14,16 @@
 </head>
 
 <body>
-    <nav>
+    <nav id="navbar-helpp">
         <div class="logo">
             <img src="img/helpp.png" />
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span>Início</span></a></li>
-            <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span>Atividades</span></a></li>
-            <li><a href="#" class="config"><i class="fas fa-cog"></i><span>Configurações</span></a></li>
-            <li><a href="#" class="sair"><i class="fas fa-power-off"><span>Sair</span></i></a></li>
-            <li><a href="#" class="dark-mode"><i class="fas fa-adjust"></i></a></li>
+            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
+            <li><a href="#" class="ativid"><i class="fas fa-file-alt"></i><span class="spanAtiv">Atividades</span></a></li>
+            <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
+            <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
+            
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -32,11 +32,11 @@
         </div>
     </nav>
 
-    <section class="conteudo">
+    <section class="conteudo" id="tela">
         <div class="dados-user">
             <ul>
-                <li>Olá, Artur</li>
-                <li>RM: 177571</li>
+                <li>Olá, Otário</li>
+                <li>RM: 180500</li>
                 <li>Curso: Informática</li>
                 <li>Série: 3ºAi</li>
             </ul>
@@ -49,7 +49,7 @@
     <div class="Atividade-titulo">
         <h1>Atividades</h1>
     </div>
-    <section class="atividades">
+    <section class="atividades" id="tela2">
         <form>
             <div class="filtro">
                 <label for="filtro_disciplina">
@@ -86,7 +86,7 @@
         </div>
 
     </section>
-    <footer>
+    <footer id="rodape">
         <div class=rodape-imagem><img src="img/rodape-imagem.png" /></div>
         <div class="rodape">
             <div class="rodape2">
@@ -132,7 +132,7 @@
                             <i class="fas fa-upload"></i>
                         </div>
                         <input type="submit" value="Enviar" class="btnEnviar">
-                        <button class="botao">Fechar</button>
+                        <div class="botao">Fechar</div>
                     </form>
                 </div>
             </div>

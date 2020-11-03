@@ -2,6 +2,8 @@
         require('../application/config/config.php');
         require('../application/config/Conn.class.php');
         require('../application/models/Update.class.php');
+        require('../application/models/Turma.class.php');
+        require('../application/models/TurmaDAO.class.php');
         
         $idTurma =$_POST['txtIdTurma'];
         $nomeTurma = $_POST['txtNomeTurma'];
@@ -9,11 +11,16 @@
         $cursoTurma = $_POST['curso'];
         $anoTurma = $_POST['txtAnoTurma'];
        
-        $alterarTurma = new Update();
+        $turma = new Turma();
+        $turmaDAO = new TurmaDAO();
         
-        $Dados = ['nome_turma' => $nomeTurma, 'semestre_turma' => $semestreTurma, 'ano_turma' => $anoTurma, 'cod_curso' => $cursoTurma];
+        $turma->setCodTurma($idTurma);
+        $turma->setNomeTurma($nomeTurma);
+        $turma->setSemestreTurma($semestreTurma);
+        $turma->setAnoTurma($anoTurma);
+        $turma->setCodCurso($cursoTurma);
         
-        $alterarTurma->ExeUpdate('turma', $Dados, "WHERE cod_turma = :idturma", "idturma={$idTurma}");
+        $turmaDAO->alterar($turma);
         
         header("location:gerenciarTurma.php");
 

@@ -1,11 +1,8 @@
-<?php
-    session_start();
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../system/css/navbar.css" />
     <link rel="stylesheet" type="text/css" href="../system/css/style.css">
@@ -18,15 +15,15 @@
 </head>
 
 <body>
-    <nav>
+    <nav id="navbar-helpp">
         <div class="logo">
             <img src="../system/img/helpp.png" />
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span>Início</span></a></li>
-            <li><a href="#" class="config"><i class="fas fa-cog"></i><span>Configurações</span></a></li>
-            <li><a href="#" class="sair"><i class="fas fa-power-off"><span>Sair</span></i></a></li>
-            <li><a href="#" class="dark-mode"><i class="fas fa-adjust"></i></a></li>
+            <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
+            <li><a href="#" class="config"><i class="fas fa-cog"></i><span class="spanConfig">Configurações</span></a></li>
+            <li><a href="#" class="sair"><i class="fas fa-power-off"><span class="spanSair">Sair</span></i></a></li>
+            
         </ul>
         <div class="burguer" id="burger">
             <div class="linha1"></div>
@@ -35,7 +32,7 @@
         </div>
     </nav>
 
-    <section class="conteudo-gestor">
+    <section class="conteudo-gestor" id="tela">
         <div class="dados-user">
             <ul>
                 <li>Olá, Flávia</li>
@@ -66,24 +63,22 @@
                     <td class="celulaMencao"></td>
                 </tr>
             </table>
-
-            <form method="POST" action="processamento.php" enctype="multipart/form-data">
-
+            <form method="POST" action = "processamento.php" enctype="multipart/form-data">
                 <div class="importarPPs">
                     <label for="uploadPPs" id="lblImportarPPs"><span class="lblImportar">Importar</span></label>
-                    <input type="file" name="uploadPPs" id="uploadPPs">
+                    <input type="file" name="uploadPPs" id="uploadPPs" accept=".xls"/>
                 </div>
-
                 <div class="modal-container" id="modal-alert-import">
                     <div class="modal-alert">
-                        <h3 class="tituloModal">Atenção!</h3><br />
-                        <span id="spnAviso"></span><br/>
-                        <input type="submit" class="btnImportar" value="Sim">
-                        <div class="botao">Não</div>
-                    </div>                    
-                </form>
-            </div>
-
+                        <h3 class="tituloModalAlert">Atenção!</h3>
+                        <div class="traco"></div><br/>
+                        <span id="spnAviso">aaaaaaaaaaaaaaaaaaaaaaaaaaaa?</span><br />
+                        <div class="botoes">
+                            <input type="submit" class="btnImportar" value="Sim">
+                            <div class="botao">Não</div>
+                        </div>
+                    </div>
+            </form>
         </div>
     </section>
 

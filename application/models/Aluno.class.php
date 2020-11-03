@@ -5,16 +5,16 @@
  * Descricao
  * @copyright (c) year, Geovana M. Melo 
  */
-class Aluno extends Usuario {
-//put your code here
+class Aluno extends application\models\Usuario {
     protected $rmAluno;
     protected $cursoAluno;
     protected $turmaAluno;
     
-    protected function listarPP(){
+    protected function listarPP(PP $PP){
         
     }
-    protected function acessarPP(){
+    
+    protected function acessarPP(PP $PP){
         
     }
 }
