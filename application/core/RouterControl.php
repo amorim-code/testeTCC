@@ -18,7 +18,12 @@ class RouterControl
        $this->url = explode('/', $request['url']);
 
        $this->controller = ucfirst($this->url[0]);
-       array_shift();
+       array_shift($this->url);
+
+       $this->method = $this->url[0];
+       array_shift($this->url);
+
+       
     }
 
     /*
