@@ -7,6 +7,7 @@ class RouterControl
     private $url;
     private $controller;
     private $method;
+    private $params;
 
     public function __construct()
     {
@@ -15,14 +16,20 @@ class RouterControl
 
     public function start($request)
     {
-       $this->url = explode('/', $request['url']);
+       if (isset($request['url'])) {
+        $this->url = explode('/', $request['url']);
 
-       $this->controller = ucfirst($this->url[0]);
-       array_shift($this->url);
-
-       $this->method = $this->url[0];
-       array_shift($this->url);
-
+        $this->controller = ucfirst($this->url[0]);
+        array_shift($this->url);
+ 
+        $this->method = $this->url[0];
+        array_shift($this->url);
+ 
+        $this->params = $this->url[0];
+       } else {
+        $this->controller = 'LoginController';
+        $this->method = 'index';
+       }
        
     }
 
