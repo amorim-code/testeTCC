@@ -10,10 +10,11 @@ class DisciplinaDAO{
     
     public function cadastrar(Disciplina $disciplina)
     {
-        $query = "INSERT INTO disciplina (nomeDisciplina, codTurma) values (?, ?)";
+        $query = "INSERT INTO disciplina (nomeDisciplina, siglaDisciplina, codTurma) values (?, ?, ?)";
         $cadastrar = Conn::getConn()->prepare($query);
         $cadastrar->bindValue(1, $disciplina->getNomeDisciplina());
-        $cadastrar->bindValue(2, $disciplina->getCodTurma());
+        $cadastrar->bindValue(2, $disciplina->getSiglaDisciplina());
+        $cadastrar->bindValue(3, $disciplina->getCodTurma());
         
         try{
             $cadastrar->execute();
@@ -38,14 +39,13 @@ class DisciplinaDAO{
     
     public function alterar(Disciplina $disciplina)
     {
-        $query = "UPDATE disciplina SET nomeDisciplina = ?, siglaDisciplina = ?, codTurma = ? WHERE codDisciplina = ?";
+        $query = "UPDATE disciplina SET nomeDisciplina = ?, siglaDisciplina = ? WHERE codDisciplina = ?";
         $alterar = Conn::getConn()->prepare($query);
         
         $alterar->bindValue(1, $disciplina->getNomeDisciplina());
         $alterar->bindValue(2, $disciplina->getSiglaDisciplina());
-        $alterar->bindValue(3, $disciplina->getCodTurma());
         
-        $alterar->bindValue(4, $disciplina->getCodDisciplina());
+        $alterar->bindValue(3, $disciplina->getCodDisciplina());
         
         try{
             $alterar->execute();

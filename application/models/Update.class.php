@@ -68,7 +68,7 @@ class Update extends Conn {
             $this->Result = true;
         } catch (PDOException $e) {
             $this->Result = null;
-            CRErro("<b>Erro ao ler:</b> {$e->getMessage()}", $e->getCode());
+            WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
         }
     }
 
