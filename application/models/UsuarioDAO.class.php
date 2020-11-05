@@ -6,7 +6,8 @@
  * @copyright (c) year, Geovana M. Melo 
  */
 class UsuarioDAO extends Conn{
-
+    private $result;
+    
     public function cadastrarUsuario(application\models\Usuario $u)
     {
         $query = "INSERT INTO usuario (rmUsuario, nomeUsuario, perfilUsuario) values (?,?,?)";
@@ -20,7 +21,7 @@ class UsuarioDAO extends Conn{
         try{
             $cadastrar->execute();
             $this->result = Conn::getConn()->lastInsertId();
-            echo "Cadastro efetuado com sucesso!";
+            echo "Cadastro efetuado com sucesso! <br>";
         } catch (Exception $e) {
             $this->result = null;
             WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
@@ -30,7 +31,6 @@ class UsuarioDAO extends Conn{
     public function consultarUsuario($q)
     {
         $sql = $q;
-        
         $consultar = Conn::getConn()->prepare($sql);
         $consultar->execute();
         
@@ -59,13 +59,28 @@ class UsuarioDAO extends Conn{
         }
     }
     
-    private function excluirUsuario($id)
+    public function excluirUsuario($id)
     {
         $query = "DELETE FROM usuario where rmUsuario = ?";
         
         $deletar = Conn::getConn()->prepare($query);
         $deletar->bindValue(1, $id);
         $deletar->execute();
+    }
+    
+    public function verificaUsuario($rm) {
+        $query = "SELECT * FROM usuario WHERE rmUsuario = ?";
+        
+        $verifica = Conn::getConn()->prepare($query);
+        $verifica->bindValue(1, $rm);
+        $verifica->execute();
+        
+        if ($verifica->rowCount() > 0){
+            $this->result = true;
+            echo "O RM {$rm} já está cadastrado no sistema! <br><hr>";
+        }else{
+            $this->result = false;
+        }
     }
     
     public function getResult() {
