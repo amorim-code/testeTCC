@@ -5,3 +5,4 @@
 
     $routerControl = new \application\core\RouterControl;
     $routerControl->start($_GET);
+    $routerControl->load();
