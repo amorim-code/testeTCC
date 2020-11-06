@@ -6,7 +6,7 @@
  * @copyright (c) year, Geovana M. Melo 
  */
 class TurmaDAO extends Conn{
-    public $result;
+    public $resultado;
     
     public function cadastrar(Turma $turma)
     {
@@ -21,9 +21,9 @@ class TurmaDAO extends Conn{
         
         try{
             $cadastrar->execute();
-            $this->result = Conn::getConn()->lastInsertId();
+            $this->resultado = Conn::getConn()->lastInsertId();
         } catch (Exception $e) {
-            $this->result = null;
+            $this->resultado = null;
             WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
         }
     }
@@ -35,8 +35,8 @@ class TurmaDAO extends Conn{
         $consultar->execute();
         
         if ($consultar->rowCount() > 0){
-            $resultado = $consultar->fetchAll(PDO::FETCH_ASSOC);
-            return $resultado;
+            $this->resultado = $consultar->fetchAll(PDO::FETCH_ASSOC);
+            return $this->resultado;
         } 
     }
     
@@ -53,15 +53,15 @@ class TurmaDAO extends Conn{
         
         try{
             $alterar->execute();
-            $this->result = Conn::getConn()->lastInsertId();
+            $this->resultado = Conn::getConn()->lastInsertId();
         } catch (Exception $e) {
-            $this->result = null;
+            $this->resultado = null;
             WSErro("<b>Erro ao alterar o registro de código: {$turma->getCodTurma()}:</b> {$e->getMessage()}", $e->getCode());
         }
     }
     
     public function excluir($id){
-        $query = "DELETE FROM turma where cod_turma = ?";
+        $query = "DELETE FROM turma WHERE cod_turma = ?";
         
         $deletar = Conn::getConn()->prepare($query);
         $deletar->bindValue(1, $id);
@@ -70,8 +70,36 @@ class TurmaDAO extends Conn{
     
     //É NECESSÁRIO CRIAR UM MÉTODO PARA EXCLUIR FK DE TURMA DE OUTRAS TABELAS, CASO EXISTA
     
-    public function getResult() {
-        return $this->result;
+    public function verificaTurma(Turma $turma) {
+        $query = "SELECT * FROM turma WHERE nome_turma = ? and semestre_turma = ? and ano_turma = ? and cod_curso = ?";
+        
+        $verifica = Conn::getConn()->prepare($query);
+        $verifica->bindValue(1, $turma->getNomeTurma());
+        $verifica->bindValue(2, $turma->getSemestreTurma());
+        $verifica->bindValue(3, $turma->getAnoTurma());
+        $verifica->bindValue(4, $turma->getCodCurso());
+        $verifica->execute();
+        
+        if($verifica->rowCount() > 0){
+            $this->resultado = $verifica->fetchAll(PDO::FETCH_ASSOC);
+            return $this->resultado;
+        }else{
+            $this->resultado = false;
+        }
     }
     
+    public function buscarCursoTurma($id) {
+        $query = "SELECT c.nome_curso FROM curso c inner join turma t on t.cod_curso = c.cod_curso where t.cod_curso = ?";
+        
+        $busca = Conn::getConn()->prepare($query);
+        $busca->bindValue(1, $id);
+        $busca->execute();
+        
+        $this->resultado = $busca->fetchAll(PDO::FETCH_ASSOC);
+        return $this->resultado;
+    }
+    
+    public function getResult() {
+        return $this->resultado;
+    }
 }

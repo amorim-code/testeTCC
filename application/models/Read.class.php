@@ -5,7 +5,6 @@
  * Classe responsável pelos leituras no banco
  */
 class Read extends Conn{
-
     private $Select;
     private $Places;
     private $Result;

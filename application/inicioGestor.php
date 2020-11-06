@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +14,12 @@
 </head>
 
 <body>
+    <?php
+        require ("../application/config/config.php");
+        require ("../application/config/Conn.class.php");
+        require ("../application/models/PP.class.php");
+        require ("../application/models/PPDAO.class.php");
+    ?>
     <nav id="navbar-helpp">
         <div class="logo">
             <img src="../system/img/helpp.png" />
@@ -52,6 +57,21 @@
                     <th class="headerConcluiu">Concluiu em</th>
                     <th class="headerMencao">Menção</th>
                 </tr>
+                    <?php
+                        $PPDAO = new PPDAO();
+                        foreach($PPDAO->consultar() as $Pps){
+                            echo "<tr>";
+                            echo "<td class='celulaRM'>" . $Pps["aluno_rmAluno"] . "</td>";
+                            echo "<td class='celulaAluno'>" . 'null' . "</td>";
+                            echo "<td class= 'celulaSerie'>" . $Pps["seriePP"] . "</td>";
+                            echo "<td class='celulaMateria'>" . $Pps{"disciplinaPP"} . "</td>";
+                            echo "<td class= 'celulaSemestre'>" . $Pps["semestrePP"] . "/" . $Pps["anoPP"] . "</td>";
+                            echo "<td class='celulaProfessor'>" . 'null' . "</td>";
+                            echo "<td class='celulaConcluiu'></td>";
+                            echo "<td class='celulaMencao'></td>";
+                            echo "</tr>";
+                        }
+                    ?>
                 <tr>
                     <td class="celulaRM">177571</td>
                     <td class="celulaAluno">Artur Barbosa Gomes</td>
@@ -78,6 +98,7 @@
                             <div class="botao">Não</div>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
     </section>

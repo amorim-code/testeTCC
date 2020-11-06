@@ -77,7 +77,7 @@ class UsuarioDAO extends Conn{
         
         if ($verifica->rowCount() > 0){
             $this->result = true;
-            echo "O RM {$rm} já está cadastrado no sistema! <br><hr>";
+            //echo "O RM {$rm} já está cadastrado no sistema! <br><hr>";
         }else{
             $this->result = false;
         }
