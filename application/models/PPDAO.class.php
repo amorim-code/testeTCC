@@ -5,6 +5,8 @@
  * Descricao
  * @copyright (c) year, Geovana M. Melo 
  */
+session_start();
+$_SESSION["erro"] = 0;
 class PPDAO{
     private $resultado;
     
@@ -26,16 +28,19 @@ class PPDAO{
         
         try{
             $cadastrar->execute();
+            $_SESSION["erro"] = 1;
             return true;
             //$this->result = Conn::getConn()->lastInsertId();
         } catch (Exception $e) {
             //$this->result = null;
+            $_SESSION["erro"] = 2;
             WSErro("<b>Erro ao cadastrar:</b> {$e->getMessage()}", $e->getCode());
         }
     }
     
     public function consultar(){
-        $sql = "SELECT * FROM pp";
+        $sql = "SELECT b.aluno_rmAluno, a.nomeUsuario, b.seriePP, b.disciplinaPP, b.semestrePP, b.anoPP FROM usuario a inner join "
+                . "pp b on a.rmUsuario = b.aluno_rmALuno order by a.nomeUsuario ";
         
         $consultar = Conn::getConn()->prepare($sql);
         $consultar->execute();
@@ -87,6 +92,22 @@ class PPDAO{
     
     public function verificaDisciplina(Disciplina $disciplina) {
 
+    }
+    
+    public function verificaTurma(PP $pp) {
+        $query = "SELECT * FROM pp WHERE aluno_rmAluno = ? and disciplina_codDisciplina = ?";
+        
+        $verifica = Conn::getConn()->prepare($query);
+        $verifica->bindValue(1, $pp->getRmAluno());
+        $verifica->bindValue(2, $pp->getCodDisciplina());
+        $verifica->execute();
+        
+        if($verifica->rowCount() > 0){
+            $this->resultado = $verifica->fetchAll(PDO::FETCH_ASSOC);
+            return $this->resultado;
+        }else{
+            $this->resultado = false;
+        }
     }
     
     public function getResultado() {

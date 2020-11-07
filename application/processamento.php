@@ -126,7 +126,6 @@
                         $discDAO = new DisciplinaDAO();
                         
                         $turma->setNomeTurma($turmaPP);
-                        $turma->setSemestreTurma($semestre);
                         $turma->setAnoTurma($ano);
                         $turma->setCodCurso(1); //setado manualmente!
                         
@@ -138,9 +137,7 @@
                         //Cadastrando disciplina
                         foreach($turmaDAO->verificaTurma($turma) as $t){
                                $disc->setCodTurma($t["cod_turma"]);
-                               
                                $PP->setSeriePP($t["nome_turma"]);
-                               $PP->setSemestrePP($t["semestre_turma"]);
                                $PP->setAnoPP($t["ano_turma"]);
                         }
                         
@@ -163,12 +160,16 @@
                             }
                         }*/
                         
-                        //Cadastrando PP
                         $PP->setRmAluno($rmAluno);
                         $PP->setRmGestor('180115');
+                        $PP->setSemestrePP($semestre);
                         $PP->setStatusPP('Em aberto');
                         $PP->setCursoPP('Informática');
-                        $PPDAO->cadastrar($PP);
+                        
+                        if($PPDAO->getResultado() == false){
+                            //Cadastrando PP
+                            $PPDAO->cadastrar($PP);
+                        }
                         header("location: inicioGestor.php");
                     }
                     echo "</table>";

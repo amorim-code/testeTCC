@@ -19,6 +19,7 @@
         require ("../application/config/Conn.class.php");
         require ("../application/models/PP.class.php");
         require ("../application/models/PPDAO.class.php");
+        session_start();
     ?>
     <nav id="navbar-helpp">
         <div class="logo">
@@ -62,7 +63,7 @@
                         foreach($PPDAO->consultar() as $Pps){
                             echo "<tr>";
                             echo "<td class='celulaRM'>" . $Pps["aluno_rmAluno"] . "</td>";
-                            echo "<td class='celulaAluno'>" . 'null' . "</td>";
+                            echo "<td class='celulaAluno'>" . $Pps["nomeUsuario"] . "</td>";
                             echo "<td class= 'celulaSerie'>" . $Pps["seriePP"] . "</td>";
                             echo "<td class='celulaMateria'>" . $Pps{"disciplinaPP"} . "</td>";
                             echo "<td class= 'celulaSemestre'>" . $Pps["semestrePP"] . "/" . $Pps["anoPP"] . "</td>";
@@ -72,7 +73,7 @@
                             echo "</tr>";
                         }
                     ?>
-                <tr>
+                <!---<tr>
                     <td class="celulaRM">177571</td>
                     <td class="celulaAluno">Artur Barbosa Gomes</td>
                     <td class="celulaSerie">2ª Série</td>
@@ -81,8 +82,13 @@
                     <td class="celulaProfessor">Adriano Milanez e Marco Antonio</td>
                     <td class="celulaConcluiu"></td>
                     <td class="celulaMencao"></td>
-                </tr>
+                </tr>!-->
             </table>
+            <?php
+                if ($_SESSION["erro"] == 1){
+                    //echo "Dados cadastrados com sucesso!";
+                }
+            ?>
             <form method="POST" action = "processamento.php" enctype="multipart/form-data">
                 <div class="importarPPs">
                     <label for="uploadPPs" id="lblImportarPPs"><span class="lblImportar">Importar</span></label>

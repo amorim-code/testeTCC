@@ -10,14 +10,13 @@ class TurmaDAO extends Conn{
     
     public function cadastrar(Turma $turma)
     {
-        $query = "INSERT INTO turma (cod_curso, nome_turma, semestre_turma, ano_turma) values (?,?,?,?)";
+        $query = "INSERT INTO turma (cod_curso, nome_turma, ano_turma) values (?,?,?)";
         
         $cadastrar = Conn::getConn()->prepare($query);
         
         $cadastrar->bindValue(1, $turma->getCodCurso());
         $cadastrar->bindValue(2, $turma->getNomeTurma());
-        $cadastrar->bindValue(3, $turma->getSemestreTurma());
-        $cadastrar->bindValue(4, $turma->getAnoTurma());
+        $cadastrar->bindValue(3, $turma->getAnoTurma());
         
         try{
             $cadastrar->execute();
@@ -42,14 +41,13 @@ class TurmaDAO extends Conn{
     
     public function alterar(Turma $turma)
     {
-        $query = "UPDATE turma SET cod_curso = ?, nome_turma = ?, semestre_turma = ?, ano_turma = ? WHERE cod_turma = ?";
+        $query = "UPDATE turma SET cod_curso = ?, nome_turma = ?, ano_turma = ? WHERE cod_turma = ?";
         $alterar = Conn::getConn()->prepare($query);
         
         $alterar->bindValue(1, $turma->getCodCurso());
         $alterar->bindValue(2, $turma->getNomeTurma());
-        $alterar->bindValue(3, $turma->getSemestreTurma());
-        $alterar->bindValue(4, $turma->getAnoTurma());
-        $alterar->bindValue(5, $turma->getCodTurma());
+        $alterar->bindValue(3, $turma->getAnoTurma());
+        $alterar->bindValue(4, $turma->getCodTurma());
         
         try{
             $alterar->execute();
@@ -71,13 +69,12 @@ class TurmaDAO extends Conn{
     //É NECESSÁRIO CRIAR UM MÉTODO PARA EXCLUIR FK DE TURMA DE OUTRAS TABELAS, CASO EXISTA
     
     public function verificaTurma(Turma $turma) {
-        $query = "SELECT * FROM turma WHERE nome_turma = ? and semestre_turma = ? and ano_turma = ? and cod_curso = ?";
+        $query = "SELECT * FROM turma WHERE nome_turma = ? and ano_turma = ? and cod_curso = ?";
         
         $verifica = Conn::getConn()->prepare($query);
         $verifica->bindValue(1, $turma->getNomeTurma());
-        $verifica->bindValue(2, $turma->getSemestreTurma());
-        $verifica->bindValue(3, $turma->getAnoTurma());
-        $verifica->bindValue(4, $turma->getCodCurso());
+        $verifica->bindValue(2, $turma->getAnoTurma());
+        $verifica->bindValue(3, $turma->getCodCurso());
         $verifica->execute();
         
         if($verifica->rowCount() > 0){

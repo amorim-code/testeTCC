@@ -9,7 +9,6 @@ class Turma{
     private $codTurma;
     private $codCurso;
     private $nomeTurma;
-    private $semestreTurma;
     private $anoTurma;
     
     function getCodTurma() {
@@ -22,10 +21,6 @@ class Turma{
 
     function getNomeTurma() {
         return $this->nomeTurma;
-    }
-
-    function getSemestreTurma() {
-        return $this->semestreTurma;
     }
 
     function getAnoTurma() {
@@ -42,10 +37,6 @@ class Turma{
     
     function setNomeTurma($nomeTurma){
         $this->nomeTurma = $nomeTurma;
-    }
-
-    function setSemestreTurma($semestreTurma){
-        $this->semestreTurma = $semestreTurma;
     }
 
     function setAnoTurma($anoTurma){

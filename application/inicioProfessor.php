@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/navbar.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../system/css/navbar.css" />
+    <link rel="stylesheet" type="text/css" href="../system/css/style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet" />
     <title>Início</title>
@@ -15,7 +15,7 @@
 <body>
     <nav id="navbar-helpp">
         <div class="logo">
-            <img src="img/helpp.png" />
+            <img src="../system/img/helpp.png" />
         </div>
         <ul class="nav-links">
             <li><a href="#" class="inicio"><i class="fas fa-home"></i><span class="spanInicio">Início</span></a></li>
@@ -143,10 +143,10 @@
 
     </section>
     <footer id="rodape">
-        <div class=rodape-imagem><img src="img/rodape-imagem.png" /></div>
+        <div class=rodape-imagem><img src="../system/img/rodape-imagem.png" /></div>
         <div class="rodape">
             <div class="rodape2">
-                <a href="https://www.crowntech.rf.gd" target="_blank"><img src="img/crowntech.png" class="logo-rodape" /></a>
+                <a href="https://www.crowntech.rf.gd" target="_blank"><img src="../system/img/crowntech.png" class="logo-rodape" /></a>
                 <div class="endereco">
                     <i class="fas fa-map-marker-alt"></i><br />
                     <span class="endereco">R. Alcântara, 113 - Vila Guilherme, São Paulo - SP, 02110-010</span>
@@ -241,7 +241,7 @@
 
         </div>
     </div>
-    <script src="js/app.js"></script>
+    <script src="../system/js/app.js"></script>
 </body>
 
 </html>
